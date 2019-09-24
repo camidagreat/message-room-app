@@ -1,13 +1,20 @@
 <div class="col-md-4 col-sm-6 col-xs-12">
-  <div class="card m-1">
+  <div class="card m-1 h-100">
     <div class="card-header">
       <div class="row">
-        <h5 class="text-center mx-auto"><%=room.title%></h5>
-        <% link_to 'subscribe', "#" %>
+        <div class="col-12 my-1">
+          <h5 class="text-center mx-auto"><%=room.title%></h5>
+        </div>
+        <div class="col-12 my-1">
+          <div class="row justify-content-around">
+            <%= link_to 'subscribe', "#", remote: true, class:"btn btn-outline-primary" %>
+            <%= link_to 'enter', message_room_path(id: room.id), class:"btn btn-outline-primary" %>
+          </div>
+        </div>
       </div>
     </div>
     <div class="card-body" id="subscribed-chats">
-
+      <p><%=room.blurb%></p>
     </div>
   </div>
 </div>

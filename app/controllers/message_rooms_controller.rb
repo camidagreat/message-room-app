@@ -11,6 +11,7 @@ class MessageRoomsController < ApplicationController
   # GET /message_rooms/1
   # GET /message_rooms/1.json
   def show
+    @messages = @message_room.messages.order(:created_at)
   end
 
   # GET /message_rooms/new

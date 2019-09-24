@@ -22,6 +22,14 @@ body {
   max-width: 400px;
 }
 
-a:visited {
+a:visited .btn-primary, a:active .btn-primary, a  .btn-primary{
   color: white !important;
+}
+
+.message-home {
+  padding: 2rem;
+}
+
+.message-room {
+
 }
