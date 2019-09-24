@@ -31,5 +31,24 @@ a:visited .btn-primary, a:active .btn-primary, a  .btn-primary{
 }
 
 .message-room {
+  .my-message-shell {
 
+  }
+  .other-message-shell {
+
+  }
+  .messages {
+    margin: 15px auto 0;
+    height: 70vh;
+    width: 80vw;
+    border-radius: 15px 15px 0 0;
+    background-color: white
+  }
+  .message-input {
+    margin: auto;
+    height: auto;
+    width: 80vw;
+    background-color: darkgrey;
+    border-radius: 0 0 15px 15px;
+  }
 }

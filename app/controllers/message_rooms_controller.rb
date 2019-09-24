@@ -63,6 +63,11 @@ class MessageRoomsController < ApplicationController
     end
   end
 
+  def ajax_message
+    @message = Message.new(params)
+    @message.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message_room
