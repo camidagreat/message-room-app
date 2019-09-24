@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @message_room.title %>
+</p>
+
+<p>
+  <strong>Blurb:</strong>
+  <%= @message_room.blurb %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @message_room.creator_id %>
+</p>
+
+<%= link_to 'Edit', edit_message_room_path(@message_room) %> |
+<%= link_to 'Back', message_rooms_path %>

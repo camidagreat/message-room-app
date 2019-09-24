@@ -1,0 +1,20 @@
+<div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <% if user_signed_in? %>
+        <li>
+          <h5 class="text-white h4"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></h5>
+        </li>
+      <% else %>
+        <li>
+          <h5 class="text-white h4"><%= link_to('Login', new_user_session_path) %></h5>
+        </li>
+      <% end %>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
