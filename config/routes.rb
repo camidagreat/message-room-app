@@ -8,5 +8,4 @@ Rails.application.routes.draw do
 
   post 'message_rooms/subscribe'
   post 'message_rooms/:id', to: 'message_rooms#ajax_message'
-  delete 'message_rooms/unsubscribe'
 end

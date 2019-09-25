@@ -9,6 +9,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :authentication_keys => [:username]
 
+  validates_uniqueness_of :username
+
   def email_required?
    false
   end
@@ -20,5 +22,9 @@ class User < ApplicationRecord
   # use this instead of email_changed? for Rails = 5.1.x
   def will_save_change_to_email?
    false
+  end
+
+  def initials
+    return first_name[0,1].capitalize + last_name[0,1].capitalize
   end
 end

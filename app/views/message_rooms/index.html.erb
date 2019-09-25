@@ -6,7 +6,7 @@
           <h3 class="text-center">My chats</h3>
         </div>
         <div class="card-body" id="subscribed-chats">
-
+          <%= render "my_rooms", my_rooms: @my_rooms %>
         </div>
       </div>
     </div>
@@ -31,3 +31,18 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(".subscribe-button").click((e) => {
+    const element = $(e.target)
+    if (element.hasClass("btn-outline-success")) {
+      element.removeClass("btn-outline-success");
+      element.addClass("btn-outline-danger");
+      element.html("Unsubscribe");
+    } else if (element.hasClass("btn-outline-danger")) {
+      element.removeClass("btn-outline-danger");
+      element.addClass("btn-outline-success");
+      element.html("Subscribe");
+    }
+  })
+</script>

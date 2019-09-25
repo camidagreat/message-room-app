@@ -12,6 +12,7 @@ class MessageRoomsController < ApplicationController
   # GET /message_rooms/1.json
   def show
     @messages = @message_room.messages.order(:created_at)
+    @subscribers = @message_room.users.pluck("username")
   end
 
   # GET /message_rooms/new
@@ -64,8 +65,23 @@ class MessageRoomsController < ApplicationController
   end
 
   def ajax_message
-    @message = Message.new(params)
+    @message = Message.new( body: params[:body],
+                            user_id: params[:user_id],
+                            message_room_id: params[:id])
     @message.save
+  end
+
+  def subscribe
+    @subscription = Subscription.where(user_id: params[:user_id], message_room_id: params[:message_room_id])[0]
+
+    if @subscription
+      @subscription.delete
+    else
+      Subscription.create(user_id: params[:user_id], message_room_id: params[:message_room_id])
+    end
+
+    @my_rooms = current_user.message_rooms.index_by(&:id)
+    respond_to :js
   end
 
   private

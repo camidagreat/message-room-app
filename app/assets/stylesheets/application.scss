@@ -22,6 +22,13 @@ body {
   max-width: 400px;
 }
 
+.back-arrow {
+  position: absolute;
+  top: 45px;
+  left: 30px;
+  font-size: 60px;
+}
+
 a:visited .btn-primary, a:active .btn-primary, a  .btn-primary{
   color: white !important;
 }
@@ -32,17 +39,31 @@ a:visited .btn-primary, a:active .btn-primary, a  .btn-primary{
 
 .message-room {
   .my-message-shell {
-
+    max-width: 45%;
+    height: auto;
+    margin-left: auto;
+    margin-bottom: 7px;
+    background-color: lightblue;
+    border-radius: 15px;
+    padding: 5px 8px;
   }
   .other-message-shell {
-
+    max-width: 45%;
+    height: auto;
+    margin-right: auto;
+    margin-bottom: 7px;
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 5px 8px;
   }
   .messages {
+    padding: 2rem;
     margin: 15px auto 0;
     height: 70vh;
     width: 80vw;
     border-radius: 15px 15px 0 0;
-    background-color: white
+    background-color: white;
+    overflow-y: scroll;
   }
   .message-input {
     margin: auto;
@@ -50,5 +71,13 @@ a:visited .btn-primary, a:active .btn-primary, a  .btn-primary{
     width: 80vw;
     background-color: darkgrey;
     border-radius: 0 0 15px 15px;
+  }
+  .message-initials {
+    padding: 3px 4px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: white
   }
 }

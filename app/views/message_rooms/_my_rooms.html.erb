@@ -1,0 +1,9 @@
+<% my_rooms.each do |key, value| %>
+  <%= link_to message_room_path(value) do %>
+    <div class="card card-body mb-2 text-dark">
+      <h4><%= value.title %></h4>
+      <br>
+      Last message: <%= value.messages.last ? value.messages.last.created_at : "never" %>
+    </div>
+  <% end %>
+<% end %>

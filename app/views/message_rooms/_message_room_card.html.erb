@@ -7,7 +7,19 @@
         </div>
         <div class="col-12 my-1">
           <div class="row justify-content-around">
-            <%= link_to 'subscribe', "#", remote: true, class:"btn btn-outline-primary" %>
+            <% if @my_rooms[room.id] %>
+              <%= link_to 'Unsubscribe',
+                  message_rooms_subscribe_path(user_id: current_user.id, message_room_id: room.id),
+                  remote: true,
+                  method: :post,
+                  class:"btn btn-outline-danger subscribe-button" %>
+            <% else %>
+              <%= link_to 'Subscribe',
+                  message_rooms_subscribe_path(user_id: current_user.id, message_room_id: room.id),
+                  remote: true,
+                  method: :post,
+                  class:"btn btn-outline-success subscribe-button" %>
+            <% end %>
             <%= link_to 'enter', message_room_path(id: room.id), class:"btn btn-outline-primary" %>
           </div>
         </div>
