@@ -77,14 +77,21 @@ class MessageRoomsController < ApplicationController
   def subscribe
     @subscription = Subscription.where(user_id: params[:user_id], message_room_id: params[:message_room_id])[0]
 
+    # delete if subscription exists and create if it doesn't
     if @subscription
       @subscription.delete
     else
       Subscription.create(user_id: params[:user_id], message_room_id: params[:message_room_id])
     end
 
-    @my_rooms = current_user.message_rooms.index_by(&:id)
-    respond_to :js
+    # If the user subscribes on the page, redirect to page
+    if params[:redirect_to_page]
+      redirect_to "/message_rooms/#{params[:message_room_id]}"
+      flash[:notice] = "you subscribed to this page!"
+    else
+      @my_rooms = current_user.message_rooms.index_by(&:id)
+      respond_to :js
+    end
   end
 
   private
@@ -107,5 +114,5 @@ class MessageRoomsController < ApplicationController
                                      locals: { message: message, user: message.user })
       end
     end
-    
+
 end

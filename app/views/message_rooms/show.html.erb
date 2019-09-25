@@ -18,13 +18,18 @@
     <% if @subscribers.include?(current_user) %>
       <%= form_with(model: @message, remote: true) do |form| %>
         <div class="row mx-3 py-3">
-            <%= form.text_field :body, class: "form-control col-sm-11 col-xs-10", id: "message-input" %>
+            <%= form.text_field :body, class: "form-control col-sm-11 col-xs-10", id: "message-input", autocomplete: "off" %>
             <%= form.hidden_field :user_id, value: current_user.id %>
-            <div class="btn btn-primary col-sm-1 col-xs-2" onclick="clearInput()" onkeyup="clearInput()">Send</div>
+            <div class="btn btn-primary col-sm-1 col-xs-2" onclick="clearInput()" id="message-enter-button">Send</div>
         </div>
       <% end %>
     <% else %>
-      
+      <h4 class="py-3 text-center mx-auto">
+        you must <%= link_to "subscribe",
+                              message_rooms_subscribe_path(user_id: current_user.id, message_room_id: params[:id], redirect_to_page: true),
+                              method: :post,
+                              class:"btn btn-success subscribe-button" %>
+        to contribute to this message room</h4>
     <% end %>
   </div>
   <!-- list those that are subscribed to this message room -->
@@ -44,11 +49,11 @@
     $("#message-input").val("");
   }
 
- $(document).ready(function(){
-    $('#TextBoxId').keypress(function(e){
-      if(e.keyCode==13)
-      $('#linkadd').click();
-    });
+  $(document).on("keypress", function(e){
+    if ( e.which == 13 ) {
+      $("form").submit()
+      $("#message-input").val("");
+    }
   });
 
   $('.messages').scrollTop($('.messages')[0].scrollHeight);

@@ -13,6 +13,9 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
   },
 
   renderMessage: function(data) {
-    return data.message + "<div class='panel-body hidden' id='new-message-target'></div>";
+    const scrollToBottom = "<script>$('.messages').scrollTop($('.messages')[0].scrollHeight);</script>";
+    const targetDiv = "<div class='panel-body hidden' id='new-message-target'></div>"
+    
+    return data.message + targetDiv + scrollToBottom;
   }
 });
