@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
   $(".subscribe-button").click((e) => {
-    const element = $(e.target)
+    let element = $(e.target)
     if (element.hasClass("btn-outline-success")) {
       element.removeClass("btn-outline-success");
       element.addClass("btn-outline-danger");
