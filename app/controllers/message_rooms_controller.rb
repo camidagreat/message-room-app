@@ -12,7 +12,7 @@ class MessageRoomsController < ApplicationController
   # GET /message_rooms/1.json
   def show
     @messages = @message_room.messages.order(:created_at)
-    @subscribers = @message_room.users.pluck("username")
+    @subscribers = @message_room.users
   end
 
   # GET /message_rooms/new
@@ -68,7 +68,10 @@ class MessageRoomsController < ApplicationController
     @message = Message.new( body: params[:body],
                             user_id: params[:user_id],
                             message_room_id: params[:id])
-    @message.save
+    if @message.save
+      ActionCable.server.broadcast 'messages',
+        message: render_message(@message)
+    end
   end
 
   def subscribe
@@ -94,4 +97,15 @@ class MessageRoomsController < ApplicationController
     def message_room_params
       params.require(:message_room).permit(:title, :blurb, :creator_id)
     end
+
+    def render_message(message)
+      if message.user_id == current_user.id
+        ApplicationController.render(partial: 'message_rooms/my_message',
+                                     locals: { message: message, user: message.user })
+      else
+        ApplicationController.render(partial: 'message_rooms/other_message',
+                                     locals: { message: message, user: message.user })
+      end
+    end
+    
 end

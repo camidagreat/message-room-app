@@ -2,17 +2,20 @@
   <%= link_to message_rooms_path do %>
     <div class="back-arrow text-dark"><</div>
   <% end %>
+  <!-- show message dependent upon whose it is -->
   <div class="messages">
     <% @messages.each do |message| %>
       <% if message.user_id === current_user.id %>
-        <%= render partial: "my_message", locals: {message: message} %>
+        <%= render partial: "my_message", locals: {message: message, user: current_user} %>
       <% else %>
-        <%= render partial: "other_message", locals: {message: message} %>
+        <%= render partial: "other_message", locals: {message: message, user: message.user} %>
       <% end %>
     <% end %>
+    <div class="panel-body hidden" id="new-message-target"></div>
   </div>
   <div class="message-input">
-    <% if @subscribers.include?(current_user.username) %>
+    <!-- only render the input if the user is subscribed -->
+    <% if @subscribers.include?(current_user) %>
       <%= form_with(model: @message, remote: true) do |form| %>
         <div class="row mx-3 py-3">
             <%= form.text_field :body, class: "form-control col-sm-11 col-xs-10", id: "message-input" %>
@@ -20,13 +23,16 @@
             <div class="btn btn-primary col-sm-1 col-xs-2" onclick="clearInput()" onkeyup="clearInput()">Send</div>
         </div>
       <% end %>
+    <% else %>
+      
     <% end %>
   </div>
+  <!-- list those that are subscribed to this message room -->
   <div class="w-50 mx-auto my-5">
     <h4>Message room followed by:</h4>
     <ul>
       <% @subscribers.each do |sub| %>
-        <li><%= sub %></li>
+        <li><%= sub.username %> - <%= sub.initials %></li>
       <% end %>
     </ul>
   </div>
