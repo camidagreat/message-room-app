@@ -14,6 +14,10 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  # configuration for action cable on heroku
+  config.web_socket_server_url = "wss://lukes-sample-chat-app.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://lukes-sample-chat-app.herokuapp.com', 'http://lukes-sample-chat-app.herokuapp.com']
+
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
