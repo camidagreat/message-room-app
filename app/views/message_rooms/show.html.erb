@@ -11,7 +11,7 @@
         <%= render partial: "other_message", locals: {message: message, user: message.user} %>
       <% end %>
     <% end %>
-    <div class="panel-body hidden" id="new-message-target"></div>
+    <div class="panel-body hidden" id="new-message-target-<%= @message_room.id %>"></div>
   </div>
   <div class="message-input">
     <!-- only render the input if the user is subscribed -->

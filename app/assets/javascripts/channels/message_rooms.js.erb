@@ -8,13 +8,13 @@ App.cable = ActionCable.createConsumer();
 
 App.messages = App.cable.subscriptions.create('MessagesChannel', {
   received: function(data) {
-    $("#new-message-target").removeClass('hidden')
-    return $('#new-message-target').append(this.renderMessage(data));
+    $(`#new-message-target-${data.room_id}`).removeClass('hidden')
+    return $(`#new-message-target-${data.room_id}`).append(this.renderMessage(data));
   },
 
   renderMessage: function(data) {
     let scrollToBottom = "<script>$('.messages').scrollTop($('.messages')[0].scrollHeight);</script>";
-    let targetDiv = "<div class='panel-body hidden' id='new-message-target'></div>"
+    let targetDiv = `<div class='panel-body hidden' id='new-message-target-${data.room_id}'></div>`
 
     return data.message + targetDiv + scrollToBottom;
   }

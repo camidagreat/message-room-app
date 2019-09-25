@@ -70,7 +70,8 @@ class MessageRoomsController < ApplicationController
                             message_room_id: params[:id])
     if @message.save
       ActionCable.server.broadcast 'messages',
-        message: render_message(@message)
+        message: render_message(@message),
+        room_id: @message.message_room_id
     end
   end
 
