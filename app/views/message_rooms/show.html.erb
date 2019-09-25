@@ -1,15 +1,12 @@
 <div class="message-room">
+  <h2 class="text-center my-3">Room title: "<%=@message_room.title%>"</h2>
   <%= link_to message_rooms_path do %>
     <div class="back-arrow text-dark"><</div>
   <% end %>
   <!-- show message dependent upon whose it is -->
   <div class="messages">
     <% @messages.each do |message| %>
-      <% if message.user_id === current_user.id %>
-        <%= render partial: "my_message", locals: {message: message, user: current_user} %>
-      <% else %>
-        <%= render partial: "other_message", locals: {message: message, user: message.user} %>
-      <% end %>
+        <%= render partial: "message", locals: {message: message, user: message.user} %>
     <% end %>
     <div class="panel-body hidden" id="new-message-target-<%= @message_room.id %>"></div>
   </div>
@@ -37,7 +34,7 @@
     <h4>Message room followed by:</h4>
     <ul>
       <% @subscribers.each do |sub| %>
-        <li><%= sub.username %> - <%= sub.initials %></li>
+        <li><%= sub.username %></li>
       <% end %>
     </ul>
   </div>

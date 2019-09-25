@@ -38,19 +38,8 @@ a:visited .btn-primary, a:active .btn-primary, a  .btn-primary{
 }
 
 .message-room {
-  .my-message-shell {
-    max-width: 45%;
-    height: auto;
-    margin-left: auto;
-    margin-bottom: 7px;
-    background-color: lightblue;
-    border-radius: 15px;
-    padding: 5px 8px;
-  }
   .other-message-shell {
-    max-width: 45%;
     height: auto;
-    margin-right: auto;
     margin-bottom: 7px;
     background-color: lightgrey;
     border-radius: 15px;
@@ -73,11 +62,13 @@ a:visited .btn-primary, a:active .btn-primary, a  .btn-primary{
     border-radius: 0 0 15px 15px;
   }
   .message-initials {
-    padding: 3px 4px;
+    padding: 3px 6px;
     height: 30px;
-    width: 30px;
     border: 1px solid black;
-    border-radius: 50%;
+    border-radius: 15px;
     background-color: white
+  }
+  .timestamp {
+    font-size: 12px;
   }
 }

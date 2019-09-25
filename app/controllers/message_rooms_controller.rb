@@ -107,13 +107,8 @@ class MessageRoomsController < ApplicationController
     end
 
     def render_message(message)
-      if message.user_id == current_user.id
-        ApplicationController.render(partial: 'message_rooms/my_message',
+        ApplicationController.render(partial: 'message_rooms/message',
                                      locals: { message: message, user: message.user })
-      else
-        ApplicationController.render(partial: 'message_rooms/other_message',
-                                     locals: { message: message, user: message.user })
-      end
     end
 
 end
