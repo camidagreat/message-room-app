@@ -1,5 +1,6 @@
 class MessageRoomsController < ApplicationController
   before_action :set_message_room, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /message_rooms
   # GET /message_rooms.json
@@ -96,16 +97,16 @@ class MessageRoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_message_room
       @message_room = MessageRoom.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def message_room_params
       params.require(:message_room).permit(:title, :blurb, :creator_id)
     end
 
+    # render comment for action cable function in #ajax_message
     def render_message(message)
         ApplicationController.render(partial: 'message_rooms/message',
                                      locals: { message: message, user: message.user })

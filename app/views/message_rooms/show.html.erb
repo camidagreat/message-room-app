@@ -3,6 +3,7 @@
   <%= link_to message_rooms_path do %>
     <div class="back-arrow text-dark"><</div>
   <% end %>
+
   <!-- show message dependent upon whose it is -->
   <div class="messages">
     <% @messages.each do |message| %>
@@ -10,6 +11,7 @@
     <% end %>
     <div class="panel-body hidden" id="new-message-target-<%= @message_room.id %>"></div>
   </div>
+
   <div class="message-input">
     <!-- only render the input if the user is subscribed -->
     <% if @subscribers.include?(current_user) %>
@@ -29,6 +31,7 @@
         to contribute to this message room</h4>
     <% end %>
   </div>
+
   <!-- list those that are subscribed to this message room -->
   <div class="w-50 mx-auto my-5">
     <h4>Message room followed by:</h4>
@@ -40,6 +43,8 @@
   </div>
 </div>
 
+<!-- JS to submit form and clear for both click send and enter send -->
+<!-- Last line is to make sure the messages box has scrolled t the bottom of messages -->
 <script type="text/javascript">
   function clearInput() {
     $("form").submit()

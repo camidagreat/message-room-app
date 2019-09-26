@@ -5,6 +5,7 @@
         <div class="card-header">
           <h3 class="text-center">My chats</h3>
         </div>
+        <!-- iterate through users' followed rooms -->
         <div class="card-body" id="subscribed-chats">
           <%= render "my_rooms", my_rooms: @my_rooms %>
         </div>
@@ -14,13 +15,14 @@
       <div>
         <div class="card">
           <div class="card-header">
-          <div class="row justify-content-center">
-            <h2 class="text-center mr-3">All chats</h2>
-            <%= link_to 'New Message Room', new_message_room_path, class: "btn btn-primary d-block my-auto" %>
-          </div>
+            <div class="row justify-content-center">
+              <h2 class="text-center mr-3">All chats</h2>
+              <%= link_to 'New Message Room', new_message_room_path, class: "btn btn-primary d-block my-auto" %>
+            </div>
           </div>
           <div class="card-body p-5" id="subscribed-chats">
             <div class="row">
+              <!-- iterate through all rooms -->
               <% @all_message_rooms.each do |room| %>
                 <%= render partial:'message_room_card', locals: {room: room} %>
               <% end %>
@@ -32,6 +34,7 @@
   </div>
 </div>
 
+<!-- JS that changes the subscribe button when pressed -->
 <script type="text/javascript">
   $(".subscribe-button").click((e) => {
     let element = $(e.target)

@@ -85,4 +85,12 @@ RSpec.configure do |config|
     end
   end
 
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+
+  config.include Warden::Test::Helpers
+
 end
